@@ -16,8 +16,12 @@ class ToDoCLI(cmd.Cmd):
 
     def __init__(self):
         super().__init__()
-        self.tasks = []
         self.filename = 'todo_list.csv'
+        self.tasks = []
+        with open(self.filename, 'r', encoding='utf-8') as f:
+            r = csv.reader(f)
+            for row in r:
+                self.tasks.append([row[0], int(row[1])])
 
     def do_add(self, arg):
         """
