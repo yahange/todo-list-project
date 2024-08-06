@@ -20,6 +20,7 @@ This is a simple command-line based To-Do List application written in Python. Th
 ## Error Handling
 - The application now includes specific error handling for file operations.
 - Errors during file read and write operations are logged with appropriate error messages.
+- Any unexpected errors that occur during file operations are also logged.
 
 ## Development and Testing
 - The code includes detailed module and class docstrings.

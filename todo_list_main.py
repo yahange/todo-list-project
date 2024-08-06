@@ -38,6 +38,8 @@ class ToDoCLI(cmd.Cmd):
                     self.tasks.append([row[0], int(row[1])])
         except OSError as e:
             logging.error("Error reading %s: %s", self.filename, e)
+        except Exception as e:
+            logging.error("An unexpected error occurred while reading %s: %s", self.filename, e)
 
     def save_tasks(self):
         """Save tasks to the CSV file."""
@@ -48,6 +50,8 @@ class ToDoCLI(cmd.Cmd):
             logging.info('Tasks have been saved.')
         except OSError as e:
             logging.error("Error saving to %s: %s", self.filename, e)
+        except Exception as e:
+            logging.error("An unexpected error occurred while saving to %s: %s", self.filename, e)
 
     def do_add(self, arg):
         """
