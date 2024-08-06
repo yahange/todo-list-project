@@ -36,7 +36,7 @@ class ToDoCLI(cmd.Cmd):
                 r = csv.reader(f)
                 for row in r:
                     self.tasks.append([row[0], int(row[1])])
-        except Exception as e:
+        except OSError as e:
             logging.error(f"Error reading {self.filename}: {e}")
 
     def save_tasks(self):
@@ -46,7 +46,7 @@ class ToDoCLI(cmd.Cmd):
                 writer = csv.writer(f)
                 writer.writerows(self.tasks)
             logging.info('Tasks have been saved.')
-        except Exception as e:
+        except OSError as e:
             logging.error(f"Error saving to {self.filename}: {e}")
 
     def do_add(self, arg):
