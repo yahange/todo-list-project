@@ -17,4 +17,24 @@ This is a simple command-line based To-Do List application written in Python. Th
 5. **Save Tasks**: Use the `save` command to save all tasks to a CSV file.
 6. **Exit**: Use the `exit` command to exit the application.
 
+## Error Handling
+- The application now includes specific error handling for file operations.
+- Errors during file read and write operations are logged with appropriate error messages.
+
+## Development and Testing
+- The code includes detailed module and class docstrings.
+- Logging has been updated to use lazy % formatting for better performance.
+- Unit tests are provided to ensure the correctness of the main functionalities.
+
+### Running the Application
+To run the application, navigate to the project directory and execute the following command:
+
+```bash
+python todo_list_main.py
+```
+## Running Tests
+To run the unit tests, execute the following command:
+```bash
+python -m unittest test_todo_list.py
+```
 This application is a useful tool for anyone looking to organize their tasks and increase productivity.
