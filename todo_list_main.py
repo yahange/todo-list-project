@@ -28,7 +28,7 @@ class ToDoCLI(cmd.Cmd):
     def load_tasks(self):
         """Load tasks from the CSV file."""
         if not os.path.exists(self.filename):
-            logging.info(f"File {self.filename} not found. Starting with an empty task list.")
+            logging.info("File %s not found. Starting with an empty task list.", self.filename)
             return
 
         try:
@@ -37,7 +37,7 @@ class ToDoCLI(cmd.Cmd):
                 for row in r:
                     self.tasks.append([row[0], int(row[1])])
         except OSError as e:
-            logging.error(f"Error reading {self.filename}: {e}")
+            logging.error("Error reading %s: %s", self.filename, e)
 
     def save_tasks(self):
         """Save tasks to the CSV file."""
@@ -47,7 +47,7 @@ class ToDoCLI(cmd.Cmd):
                 writer.writerows(self.tasks)
             logging.info('Tasks have been saved.')
         except OSError as e:
-            logging.error(f"Error saving to {self.filename}: {e}")
+            logging.error("Error saving to %s: %s", self.filename, e)
 
     def do_add(self, arg):
         """
@@ -62,7 +62,7 @@ class ToDoCLI(cmd.Cmd):
                 logging.warning('Task already exists.')
                 return
         self.tasks.append([arg, 0])
-        logging.info(f'Task \'{arg}\' added.')
+        logging.info("Task '%s' added.", arg)
 
     def do_delete(self, _arg):
         """
@@ -81,7 +81,7 @@ class ToDoCLI(cmd.Cmd):
             return
         for idx, task in enumerate(self.tasks, 1):
             state = 'completed' if task[1] == 1 else 'not completed'
-            logging.info(f'{idx}. {task[0]} ({state})')
+            logging.info('%d. %s (%s)', idx, task[0], state)
 
     def do_save(self, _arg):
         """
@@ -96,9 +96,9 @@ class ToDoCLI(cmd.Cmd):
         for task in self.tasks:
             if task[0] == arg:
                 task[1] = 1
-                logging.info(f'Task \'{arg}\' marked as completed.')
+                logging.info("Task '%s' marked as completed.", arg)
                 return
-        logging.warning(f'Task \'{arg}\' not found.')
+        logging.warning("Task '%s' not found.", arg)
 
     def do_exit(self, _arg):
         """
